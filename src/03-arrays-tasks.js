@@ -28,15 +28,22 @@ function findElement(arr, value) {
  * Generates an array of odd numbers of the specified length
  *
  * @param {number} len
- * @return {array}
+ * @return {void}
  *
  * @example
  *    1 => [ 1 ]
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  const arr = [];
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < len * 2; i++) {
+    if (i % 2 !== 0) {
+      arr.push(i);
+    }
+  }
+  return arr;
 }
 
 
@@ -100,15 +107,10 @@ function getArrayOfStrings(arr) {
  *    [ 1, 2, 3, 4, 5, 'false' ]         => [ 1, 2, 3, 4, 5, 'false' ]
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  /* return arr.filter((el) => el !== null
-       && el !== false
-       && el !== 0 && el !== undefined && !isNaN(el) && el.length !== 0);
-
-   */
-
-  throw new Error('Not implemented');
+function removeFalsyValues(arr) {
+  return arr.filter((el) => (el !== 0 && el !== false && el !== null ? el : null));
 }
+
 
 /**
  * Returns the array of uppercase strings from the specified array
@@ -205,8 +207,8 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  throw new Error('Not implemented');
+function toCsvText(arr) {
+  return arr.join('\n');
 }
 
 /**
@@ -231,7 +233,7 @@ function toArrayOfSquares(arr) {
  *  or f[n] = f[n-1] + x[n]
  *
  * @param {array} arr
- * @return {array}
+ * @return {void}
  *
  * Example :
  *   [ 1, 1, 1, 1, 1 ]        => [ 1, 2, 3, 4, 5 ]
@@ -239,8 +241,10 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
+function getMovingSum(arr) {
+  // eslint-disable-next-line no-return-assign,no-param-reassign
+  arr.reduce((a, b, i) => arr[i] = a + b, 0);
+  return arr;
 }
 
 /**
@@ -254,8 +258,8 @@ function getMovingSum(/* arr */) {
  * [ 'a', 'b', 'c' , null ]  => [ "b", null ]
  * [ "a" ] => []
  */
-function getSecondItems(/* arr */) {
-  throw new Error('Not implemented');
+function getSecondItems(arr) {
+  return arr.filter((el, i) => i % 2);
 }
 
 
@@ -273,8 +277,14 @@ function getSecondItems(/* arr */) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  return arr.reduce(
+    (acc, curr, i) => {
+      // eslint-disable-next-line no-return-assign
+      [...Array(i + 1)].map(() => acc[acc.length] = curr);
+      return acc;
+    }, [],
+  );
 }
 
 
@@ -291,10 +301,9 @@ function propagateItemsByPositionIndex(/* arr */) {
  *   [ 1,2,3,4,5,6,7,8,9,10 ] => [ 10, 9, 8 ]
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
-function get3TopItems(/* arr */) {
-  throw new Error('Not implemented');
+function get3TopItems(arr) {
+  return arr.reverse().slice(0, 3);
 }
-
 
 /**
  * Returns the number of positive numbers from specified array
@@ -309,8 +318,9 @@ function get3TopItems(/* arr */) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  // eslint-disable-next-line no-restricted-globals
+  return arr.filter((el) => typeof el === 'number' && el > 0).length;
 }
 
 /**
@@ -342,8 +352,8 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   [ -1, 1, -1, 1 ]      => 0
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
-function getItemsSum(/* arr */) {
-  throw new Error('Not implemented');
+function getItemsSum(arr) {
+  return arr.reduce((acc, curr) => acc + curr, 0);
 }
 
 /**
@@ -358,8 +368,9 @@ function getItemsSum(/* arr */) {
  *  [ -1, 'false', null, 0 ] => 2
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  // eslint-disable-next-line no-undef,no-restricted-globals
+  return arr.filter((el) => !el).length;
 }
 
 /**
@@ -444,8 +455,9 @@ function sortCitiesArray(/* arr */) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  // eslint-disable-next-line max-len
+  return Array(n).fill(0).map((elem, i) => Array(n).fill(0).map((elem2, j) => 1 - Math.min(Math.abs(i - j), 1)));
 }
 
 /**
